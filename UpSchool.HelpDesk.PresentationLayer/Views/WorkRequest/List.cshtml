@@ -1,0 +1,108 @@
+﻿@model List<WorkRequestModel>
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-12">
+
+
+        @if (Model?.Count > 0)
+        {
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Talepler</h6>
+                    <a asp-action="Create" asp-controller="WorkRequest" class="btn btn-primary btn-sm">Yeni Talep Oluştur</a>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Talep Başlığı</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Talep Açıklaması</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Durumu</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder  opacity-7 ps-2">Atananan Developer</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="ps-3 text-xs text-center font-weight-bold ">@item.Title</span>
+                                        </td>
+                                        <td>
+                                            <span class="ps-1 text-xs text-center font-weight-bold">@item.Description</span>
+                                        </td>
+                                        <td>
+                                            <span class="ps-1 text-xs text-center font-weight-bold">@item.State</span>
+                                        </td>
+
+                                        <td>
+                                            <span class="ps-1 text-xs text-center font-weight-bold">
+
+                                                @if (item.AssignedUserId == null)
+                                                {
+                                                    <a asp-action="AssignDeveloper" asp-controller="WorkRequest" asp-route-workRequestId ="@item.Id" class="btn btn-primary btn-sm">Ata</a>
+                                                }
+                                                else
+                                                {
+                                                    <getusername user-id="@item.AssignedUserId.Value"></getusername>
+
+                                                }
+
+                                            </span>
+                                        </td>
+                                        <td class="ps-1 text-xs text-center font-weight-bold">
+
+
+                                            @if (item.AssignedUserId == null)
+                                            {
+                                                <a asp-action="Update" asp-controller="WorkRequest" asp-route-id="@item.Id" class="btn btn-info btn-sm"> Düzenle</a>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-gradient-danger">Düzenleme yapılamaz</span>
+                                            }
+
+
+
+
+                                        </td>
+
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card">
+                <!-- Card image -->
+                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                    <h3 class="card-title mb-3">Uyarı</h3>
+                    <p class="card-text mb-4">Herhangi bir veri bulunamadı.</p>
+                    <a asp-action="Create" asp-controller="WorkRequest" class="btn btn-primary">Yeni Talep Ekle</a>
+                </div>
+            </div>
+        }
+
+
+
+
+
+    </div>
+</div>

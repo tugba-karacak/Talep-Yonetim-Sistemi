@@ -1,0 +1,25 @@
+﻿@model RapidApiResultModel
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title mb-3">Sorgu Sonuçları</h3>
+       
+
+        @foreach (var response in Model.response)
+        {
+            <p> Ülke : @response.country</p>
+            <p> Vaka Sayısı: @response.cases.total </p>
+            <p> Ölüm Sayısı : @response.deaths.total</p>
+            <p> Nüfus : @response.population</p>
+         
+        }
+
+        <a asp-action="Index" asp-controller="RapidApi" class="btn btn-primary btn-lg w-100">Tekrar arama yap</a>
+    </div>
+
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model CreateWorkRequestStateModel
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title mb-3">Yeni Durum Oluştur</h3>
+        <form asp-action="Create" asp-controller="WorkRequestState">
+            <input type="hidden" asp-for="WorkRequestId" value="@Model.WorkRequestId" />
+        
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Açıklama</label>
+                <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+            </div>
+            <div class="form-group text-danger" asp-validation-summary="All" >
+
+
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg w-100">Kaydet</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+

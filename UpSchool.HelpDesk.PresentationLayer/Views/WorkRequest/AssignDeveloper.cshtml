@@ -1,0 +1,42 @@
+﻿@model AssignUserModel
+
+@{
+    Layout = "_Layout";
+    List<ApplicationUserModel> memberList = (List<ApplicationUserModel>)ViewBag.Members;
+}
+@foreach (var member in memberList)
+{
+    <div class="card mb-3">
+        <div class="card card-profile card-plain p-5">
+            <div class="row">
+                <div class="col-lg-5">
+                    <a href="javascript:;">
+                        <div class="position-relative">
+                            <div class="blur-shadow-image">
+                                <img class="w-75 rounded-3 shadow-lg" style="height:200px!important;" src="~/images/@member.Image">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-7 ps-0 my-auto">
+                    <div class="card-body text-left">
+                        <div class="p-md-0 pt-3">
+                            <h5 class="font-weight-bolder mb-0">@member.Name</h5>
+                            <p class="text-uppercase text-sm font-weight-bold mb-2">@member.Email</p>
+                        </div>
+                     
+                        <form asp-action="AssignDeveloper" asp-controller="WorkRequest">
+                            <input type="hidden" asp-for="@Model.WorkRequestId" />
+                            <input type="hidden" name="UserId" asp-for="UserId" value="@member.Id" />
+                                <button type="submit" class="btn bg-gradient-info btn-lg w-100">Personeli Görevlendir</button>
+                        </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+}
+
