@@ -18,7 +18,7 @@ namespace UpSchool.HelpDesk.DataAccessLayer
         {
             services.AddDbContext<HelpDeskContext>(conf =>
             {
-                conf.UseSqlServer(configuration.GetConnectionString("RemoteDatabase"));
+                conf.UseSqlServer(configuration.GetConnectionString("LocalDatabase"));
             });
 
 
